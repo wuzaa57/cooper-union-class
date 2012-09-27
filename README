@@ -1,1 +1,3 @@
-This is just a sample project to get the students in a guest lecture at Cooper Union going with GitHub and Heroku.
+This is just a sample project to get the students in a guest lecture at Cooper Union going with GitHub and Heroku
+
+My project is to display frequently used words by having the words increase by a pixel for every 10 uses. This would be a graphical display for the user with the fun of knowing his or her most used words.
