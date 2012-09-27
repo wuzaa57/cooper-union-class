@@ -1,6 +1,7 @@
 Fancy Installation Instructions for the Cooper Lab
 ===========================================================
 
+```
 //Create Keys
 ssh-keygen -t rsa
 
@@ -20,3 +21,9 @@ heroku create
 
 //Push your code to heroku
 git push heroku master
+```
+
+Reference for Markdown
+------------------------
+* http://github.github.com/github-flavored-markdown/
+* http://github.github.com/github-flavored-markdown/sample_content.html
