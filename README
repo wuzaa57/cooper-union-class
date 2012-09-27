@@ -1,3 +1,6 @@
+Fancy Installation Instructions for the Cooper Lab
+================================
+
 //Create Keys
 ssh-keygen -t rsa
 
