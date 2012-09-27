@@ -9,7 +9,7 @@ heroku keys:clear
 heroku keys:add //Choose the id_rsa key.
 
 
-//Go to the directory you checked out yoru git files
+//Go to the directory you checked out your git files
 cd ~/desktop/cooper-union-erin/
 
 //Create a new heroku instance
