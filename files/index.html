@@ -1,18 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>This is It</title>
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/style.css">
-  	</head>
-	<body>
-		<section>
-			<h1>This is What It's About</h1>
-			<article>
-				<p>This would be "it," then, the thing to which the title of this refers, and states what it (this) is about, which is apparently only the title's statement that this is about that which the title says it is about.</p>
-				<p>Continuing on this subject, we would be expected to have something to say in continuance of it, which we do not.</p>
-			</article>
-		</section>
-	</body>
+
+<html>
+
+<head>
+	<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+	
+	<style>
+		body {
+			margin:0
+			background-color:teal;
+		}
+	</style>
+	
+	<script>
+		$(function(){
+		
+			console.log('hello');
+			
+		
+		});	
+		
+
+	
+		$.ajax({
+			url: 'http://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=WeLove2NE1Fam',
+			dataType:'jsonp',
+				
+			success:function(response){
+			
+				$.each(response, function(index, value){
+						console.log(value);
+
+						var text=value['text'];
+						if(value.entities.urls){
+							$.each(value.entities.urls, function(index, url){
+								text=text.replace(url.url, '<a href="'+url.expanded_url+'">'+url.display_url+'</a>');	
+							});
+						}
+						
+						
+						if(text.substr(0,1)==='@'){
+							$('#messages').append('<li>'+text+'</li>');
+						} else if(text.substr(0,2)==='RT') {
+							$('#tweets').append('<li>'+text+'</li>');
+						} else {
+							$('#retweets').append('<li>'+text+'</li>');
+						}
+						
+						
+					}
+				)
+			},
+				
+			error:function(){
+				console.log("damn, I'm sad.");
+			}
+		});
+
+	</script>
+	
+	
+</head>
+
+<body>
+
+	<ul id="tweets">
+	
+<!--	<li>
+	<img src="http://a0.twimg.com/profile_images/2591172309/314985_10151100058132918_318490155_n_normal.jpg" width="100" height="100"/>
+	Posting my first tweet in class... :D
+	</li>
+-->
+
+	</ul>
+	
+	<ul id="messages"></ul>
+	<ul id="retweets"></ul>
+	
+</body>
+
 </html>
