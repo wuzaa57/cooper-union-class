@@ -6,7 +6,7 @@ heroku login
 
 //Clear your previous keys
 heroku keys:clear
-heroku keys:add
+heroku keys:add //Choose the id_rsa key.
 
 
 //Go to the directory you checked out yoru git files
