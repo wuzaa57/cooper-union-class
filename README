@@ -1,1 +1,19 @@
-This is just a sample project to get the students in a guest lecture at Cooper Union going with GitHub and Heroku.
+//Create Keys
+ssh-keygen -t rsa
+
+//Login to Heroku
+heroku login
+
+//Clear your previous keys
+heroku keys:clear
+heroku keys:add
+
+
+//Go to the directory you checked out yoru git files
+cd ~/desktop/cooper-union-erin/
+
+//Create a new heroku instance
+heroku create
+
+//Push your code to heroku
+git push heroku master
