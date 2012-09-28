@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+	<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+
+	<script>
+	
+		//cookies! i.e., check if data is available in our local storage rather than accessing the twitter site every time
+		if(localStorage.twitterSearch) {
+			var twitterData = JSON.parse(localStorage.twitterSearch);
+			var formattedData = [];
+			
+			//loop goes through every key in localStorage.twitterSearch and performs function as specified
+			$.each(twitterData, function(index, tweet){
+				//console.log('index: ', index, 'tweet: ', tweet);
+				
+				
+				var text=tweet.text;
+			
+				if(tweet.entities){
+					if(tweet.entities.urls){
+						$.each(tweet.entities.urls, function(index, website){
+							text=text.replace(website.url, '<a href="'+website.expanded_url+'">'+website.display_url+'</a>');	
+						});
+					}
+				}			
+				
+				formattedData.push({
+					text: tweet.text,
+					from_user_name: tweet.from_user_name
+				});
+				
+			});
+			
+			localStorage.formattedData = JSON.stringify(formattedData);
+			
+			console.log(localStorage.formattedData);
+			console.log('hooray!');
+			console.log('buttocks!');
+			console.log('Victor Chen Sucks!');
+						
+			//below are to confirm the results
+			//console.log(twitterData);
+			//console.log('the list of text: ', formattedData);
+			
+		} else {
+		
+			//ajax already knows what it's doing, what is specified, where to get the
+			//object from and then use that information when it needs to
+			$.ajax({
+				url: 'http://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=everyplace&count=10',
+				dataType:'jsonp',
+				//jsonp = gets json from an unknown server
+			
+				success:function(response){
+					//console.log(response);
+					
+					//convert to text using JSON.stringify()
+					localStorage.twitterSearch = JSON.stringify(response);
+					console.log('I think that worked.');
+				},
+				
+				error:function(error){
+					alert(error);
+				}
+			
+			});
+		}
+	
+		//https://dev.twitter.com/docs/api/1/get/search
+		//test to see if we've got data {
+		
+		//no?
+		//get the url for your twitter data
+		
+		//parse that data taking what you want and leaving the rest
+		//too much is better than too little
+		
+		//store the data into the dom
+		
+	</script>
+		
+</head>
+<body>
+	<h1>hello</h1>
+	<h2>world</h2>
+</body>
+</html>
+		
