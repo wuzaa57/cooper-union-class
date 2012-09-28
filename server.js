@@ -3,10 +3,11 @@ var static = require('node-static'),
 	util = require('util');
 var webroot = './files',
 	port = process.env.PORT || 8080;
-var file = new(static.Server)(webroot, {
-	cache: 600,
-	headers: { 'X-Powered-By': 'node-static' }
-});
+var file = new (static.Server)(webroot, {
+		cache: 600,
+		headers: { 'X-Powered-By': 'node-static' }
+	});
+
 http.createServer(function(req, res) {
 	req.addListener('end', function() {
 		file.serve(req, res, function(err, result) {
