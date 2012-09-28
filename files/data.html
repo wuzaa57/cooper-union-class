@@ -10,14 +10,15 @@
 				var data = $("h1");
 				console.log(data);
 	
+				var random = Math.random();
 	
 				$.ajax({
 				
 					url:'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/test?apiKey=5064eef0e4b088b309ccce2f',
 					dataType:'json',
 					contentType:'application/json',
-					type:'POST',
-					data:'{"newKey":"newValue"}',
+					type:'PUT',
+					data:'{"newKey":'+random+'}',
 					success:function(response){
 						console.log(response);
 					},
@@ -27,7 +28,6 @@
 				
 				});
 				
-/*						
 				$.ajax({
 				
 					url:'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/test?apiKey=5064eef0e4b088b309ccce2f',
@@ -40,7 +40,6 @@
 					}
 				
 				});
-*/		
 				//https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/test?apiKey=5064eef0e4b088b309ccce2f
 
 			});
