@@ -35,7 +35,7 @@
 					dataType:'json',
 					success:function(response){
 						console.log(response);
-						$("h1").append('<h2>'+response[0].newKey+'</h2>');
+						$("h1").appendTo('<h2>'+response[0].newKey+'</h2>');
 						
 					},
 					error: function(error) {
