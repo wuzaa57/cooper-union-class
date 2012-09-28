@@ -8,6 +8,23 @@ certain font size, the code will be edited to allow the pixel increment for ever
 uses of the word. This will provide a graphical image for entertainment purposes as the
 user will see which words he or she uses frequently.
 
+<pre>                 _                        
+                      \`*-.                    
+                       )  _`-.                 
+                      .  : `. .                
+                      : _   '  \               
+                      ; *` _.   `*-._          
+                      `-.-'          `-.       
+                        ;       `       `.     
+                        :.       .        \    
+                        . \  .   :   .-'   .   
+                        '  `+.;  ;  '      :   
+                        :  '  |    ;       ;-. 
+                        ; '   : :`-:     _.`* ;
+               [bug] .*' /  .*' ; .*`- +'  `*' 
+                     `*-*   `*-*  `*-*'        
+</pre>
+
 <table>
   <tr>
     <th>Item</th><th>Lesson</th>
