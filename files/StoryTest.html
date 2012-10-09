@@ -62,22 +62,28 @@ $(document).ready(function(){
 	}
 	
 	var assertion = "Follow";
-	var nextPage;
 	
-	_.each(story, function(step, key) {
+	
+	var nextPage = function(story, assertion) {
 		
-		_.each(step.content, function(content, key) {
-
-			if(content.name.toLowerCase() === assertion.toLowerCase()) {
-				nextPage = 'page_' + content.page;
-			}
+		var nextPage;
+		
+		_.each(story, function(step, key) {
+			
+			_.each(step.content, function(content, key) {
+	
+				if(content.name.toLowerCase() === assertion.toLowerCase()) {
+					nextPage = 'page_' + content.page;
+				}
+			});
+	
 		});
-
 		
-
-	});
+		return nextPage;
+	};
 	
 	
+	var nextPage = nextPage(story, "start over");
 	console.log(nextPage);
 
 
