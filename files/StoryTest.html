@@ -61,7 +61,7 @@ $(document).ready(function(){
 		}
 	}
 	
-	var assertion = "Follow";
+	var assertion = "yoyo";
 	
 	
 	var nextPage = function(story, assertion) {
@@ -83,12 +83,26 @@ $(document).ready(function(){
 	};
 	
 	
-	var displayItem = function
+	var response = function (nextPage){
+
+		var storyPage = story[nextPage];
+		return storyPage;
+
+	};						
 	
 	
+	console.log(
+		response(
+			nextPage(story, assertion)
+		)
+	);
+
+	
+	
+	/*
 	var nextPage = nextPage(story, "start over");
 	console.log(nextPage);
-	
+	*/
 	
 	//find all of the tweets
 	
