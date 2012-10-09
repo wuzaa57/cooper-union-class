@@ -61,23 +61,24 @@ $(document).ready(function(){
 		}
 	}
 	
-	var assertion = "YoYo";
-	var test = _.find(story, function(step) {
-		_.each(step.content, function(content) {
+	var assertion = "Follow";
+	var nextPage;
+	
+	_.each(story, function(step, key) {
 		
-			if(content.name === assertion) {
-				console.log(content.page);
-				result = content.page;
+		_.each(step.content, function(content, key) {
+
+			if(content.name.toLowerCase() === assertion.toLowerCase()) {
+				nextPage = 'page_' + content.page;
 			}
-			
-			return result;
-					
 		});
+
+		
 
 	});
 	
-	console.log(test);
-
+	
+	console.log(nextPage);
 
 
 });
