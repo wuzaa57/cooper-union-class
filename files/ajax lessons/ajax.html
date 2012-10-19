@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- include jQuery library -->
+	<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+	<script>
+			
+			$(document).ready(function(){
+			
+			
+				 /* 
+				 
+				 //this example would apply the click handler to the body, and not the h1
+				 $("body").append("<h1 id='get'>Get Tweets</h1>").on("click", function(){
+					console.log("you clicked on me");
+				 });
+				 */
+
+				 var logger = function(message) {
+				 	console.log(message);
+				 };
+				 
+  				 var tweets;
+
+				 var getTweets = function(searchTerm, rpp, callback) {
+					
+
+					var searchUrl = "http://search.twitter.com/search.json?q=" + searchTerm + "&rpp=" + rpp;
+					console.log(searchUrl);
+					$.ajax({
+					
+						// our query URL
+						url: searchUrl,
+						
+						// our specified data-type
+						dataType:'jsonp',
+		
+						// If the Ajax was successful, use its 'response' to our query to create 'localStorage.twitterSearch'. Remember, 
+						// 'success:function()'' takes an argument, representing the query's response. We can call it whatever we want: 
+						// 'response', 'answer', 'stuffWeAskedFor', etc.
+						success:function(response){
+		
+							// Create 'localStorage.twitterSearch' by turning the response into a string value.
+							// This way, we can work with it as text.
+							//localStorage.twitterSearch = JSON.stringify(response);
+		
+							// Console.log "I think that worked," as confirmation that our Ajax was successful. 
+							console.log('I think that worked.');
+							//console.log(response.results);
+							console.log("Number of responses:" + response.results.length);
+							tweets = response.results;
+							
+							if(typeof(callback) === "function") {
+								callback();
+								console.log("the callback has been fired");
+							}
+
+						},
+		
+						// Send an alert if our Ajax was failed.
+						error: function(){
+							alert('Error, error: does not compute.');
+						}
+					
+					});			
+					
+					
+								 
+				 };
+
+				 var displayTweets = function(tweets) {
+				 
+				 	console.log("attempting to display tweets");
+				 	
+				 	
+				 	/*for(var i = 0; i<tweets.length; i++) {
+				 		var tweet = tweets[i];
+				 		console.log(tweet);
+				 		
+				 	}*/
+				 	
+				 	
+				 	$.each(tweets, function(index, tweet) {
+				 		console.log(tweet);
+				 		var tweetHTML = "<li class='tweet' id='" + tweet.id_str + "'>" + tweet.text + "</li>";
+				 		$(tweetHTML).appendTo("#tweets");
+				 		
+				 		
+				 	});
+				 	
+				 
+				 };
+
+				 //this example appends the click function to the h1, not the body
+			/*	 $("<h1 id='get'>Get 100 Binder Tweets</h1>").appendTo("body").on("click", function(){
+				 	getTweets("binders", "100");
+				 });
+			*/ 
+				 $("<h2>Get 1 binder tweet</h2>").appendTo("body").on("click", function(){
+				 	
+				 	
+				 	getTweets("binders", "1");
+				 	console.log("attempting to log tweets:", tweets);
+				 	
+				 	
+				 });
+				
+				$("<h3>Display tweets</h3>").appendTo("body").on("click", function() {
+				 	console.log("attempting to log tweets:", tweets);
+				 	
+				 	
+				 	if($("#tweets").length === 0) {
+						$("<ul id='tweets' />").appendTo("body");
+					};
+										
+										
+					var lastTweetID;										
+					var schedueldQuery = setInterval(function () {
+				 		//getTweets("binders", "1");
+						console.log("scheduled action happened");
+						getTweets("binders", "1", function() {
+							
+							console.log(lastTweetID, tweets[0].id_str);
+							if(lastTweetID !== tweets[0].id_str) {
+								displayTweets(tweets);
+							}
+							lastTweetID = tweets[0].id_str;
+							
+						
+							console.log("the fancy callback happened", tweets);
+						});
+
+						//get tweets
+						//display tweets
+						
+					}, 10000);				 	
+				 	
+				 	
+				 	
+				});
+				
+			
+
+			});
+		
+
+	</script>
+
+</head>
+<body>
+</body>
+</html>
