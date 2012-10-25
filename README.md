@@ -23,6 +23,16 @@ heroku create
 git push heroku master
 ```
 
+Additional Useful Heroku Commands
+---------------------------------
+
+```
+//After creation, rename your app to something you care about
+heroku apps:rename <new app name>
+
+//Rather than create a new app each time, re-open one that you've named correctly.
+heroku git:remote --app <app name>
+```
 Reference for Markdown
 ------------------------
 * http://github.github.com/github-flavored-markdown/
