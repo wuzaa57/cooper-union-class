@@ -8,7 +8,12 @@
 		<script>
 		
 			$(document).ready(function() {
-
+				mongoUtil.config({
+					"db":"apiTest",
+					"appID":"heroku_app7564546",
+					"apiKey":"5088cebae4b0d0aee183c26d"
+				});
+				
 				//actual code
 				$('#form').submit(function(){
 					

@@ -1,8 +1,15 @@
 var mongoUtil = {
-	db: "apiTest",
-	apiKey: "5088cebae4b0d0aee183c26d",
+	_db: "",
+	_appID:"",
+	_apiKey: "",
+	config: function(configuration) {
+		
+		for (var key in configuration) {
+			this['_'+key] = configuration[key];
+		};
+	},
 	url: function() {
-		return 'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/'+this.db+'?apiKey='+this.apiKey;
+		return 'https://www.mongolab.com/api/1/databases/'+this._appID+'/collections/'+this._db+'?apiKey='+this._apiKey;
 	},
 	post: function(id, data, callback) {
 		var obj = {};
