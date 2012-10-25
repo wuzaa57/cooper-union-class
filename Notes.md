@@ -2,7 +2,6 @@ Storage Notes
 ===========================================================
 
 ```
-://dashboard.heroku.com/apps/<appname>/resources
 
 //Get your mongodb username and password
 heroku config
