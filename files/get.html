@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Data Example</title>
+		<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+		<script>
+		
+			$(document).ready(function() {
+
+				var dbName = "apiTest",
+					url = 'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/'+dbName+'?apiKey=5088aa82e4b0a116b09050a1';
+
+				$.ajax({
+				
+					// url:'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/test?apiKey=5064eef0e4b088b309ccce2f',
+					url:url,
+					dataType:'json',
+					contentType:'application/json',
+					type:'GET',
+					success:function(response){
+						
+						console.log(response);
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				
+				});
+				// curl -X POST -H "Content-Type:application/json" https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/random?apiKey=5088aa82e4b0a116b09050a1 -d '{"randomItem":123}'
+
+			});
+
+		</script>
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/style.css">
+  	</head>
+	<body>
+		<h1>Get Example</h1>	
+	</body>
+</html>

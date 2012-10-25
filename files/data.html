@@ -14,10 +14,11 @@
 	
 				$.ajax({
 				
-					url:'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/test?apiKey=5064eef0e4b088b309ccce2f',
+					// url:'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/test?apiKey=5064eef0e4b088b309ccce2f',
+					url:'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/twitter?apiKey=5088aa82e4b0a116b09050a1',
 					dataType:'json',
 					contentType:'application/json',
-					type:'PUT',
+					type:'DELETE',
 					data:'{"newKey":'+random+'}',
 					success:function(response){
 						
@@ -28,10 +29,11 @@
 					}
 				
 				});
-				
+				//
 				$.ajax({
 				
-					url:'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/test?apiKey=5064eef0e4b088b309ccce2f',
+					// url:'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/test?apiKey=5064eef0e4b088b309ccce2f',
+					url:'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/twitter?apiKey=5088aa82e4b0a116b09050a1',
 					dataType:'json',
 					success:function(response){
 						console.log(response);

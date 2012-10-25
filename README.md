@@ -32,6 +32,12 @@ heroku apps:rename <new app name>
 
 //Rather than create a new app each time, re-open one that you've named correctly.
 heroku git:remote --app <app name>
+
+//Emulated cron interface
+heroku addons:add scheduler
+
+
+
 ```
 
 Running your application locally on your personal machine
