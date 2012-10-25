@@ -24,7 +24,7 @@ git push heroku master
 ```
 
 Additional Useful Heroku Commands
----------------------------------
+===========================================================
 
 ```
 //After creation, rename your app to something you care about
@@ -33,6 +33,20 @@ heroku apps:rename <new app name>
 //Rather than create a new app each time, re-open one that you've named correctly.
 heroku git:remote --app <app name>
 ```
+
+Running your application locally on your personal machine
+===========================================================
+
+```
+//assuming you have node installed, install the dependencies for this particular application
+npm install
+
+//launch the local node application, by default at http://localhost:5000
+foreman start
+
+```
+
+
 Reference for Markdown
 ------------------------
 * http://github.github.com/github-flavored-markdown/
