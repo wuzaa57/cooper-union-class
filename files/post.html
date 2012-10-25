@@ -8,6 +8,7 @@
 		
 			$(document).ready(function() {
 
+				//utility to post and get data
 				var mongoUtil = {
 					db: "apiTest",
 					apiKey: "5088aa82e4b0a116b09050a1",
@@ -60,9 +61,11 @@
 
 
 
-				
+				//actual code
 				$('#form').submit(function(){
+					
 					var data = $(this).find("#entry").val();
+
 					console.log("data to post:", data);
 					mongoUtil.post("test",data, function(){
 						mongoUtil.get();
@@ -80,7 +83,7 @@
 	<body>
 		<h1>Post Example</h1>
 		<form action="" id="form">
-			<input type="text" id="entry" name="entry" value=""/>
+			<input type="text" id="entry" name="entry" value="" placeholder="data to store"/>
 		</form>
 	</body>
 </html>
