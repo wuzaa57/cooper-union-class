@@ -11,7 +11,7 @@
 				//utility to post and get data
 				var mongoUtil = {
 					db: "apiTest",
-					apiKey: "5088aa82e4b0a116b09050a1",
+					apiKey: "5088cebae4b0d0aee183c26d",
 					url: function() {
 						return 'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/'+this.db+'?apiKey='+this.apiKey;
 					},
@@ -67,7 +67,7 @@
 					var data = $(this).find("#entry").val();
 
 					console.log("data to post:", data);
-					mongoUtil.post("test",data, function(){
+					mongoUtil.post("entry",data, function(){
 						mongoUtil.get();
 					});
 

@@ -2,16 +2,10 @@ Storage Notes
 ===========================================================
 
 ```
-//Storage
-	//More information can be found here: https://devcenter.heroku.com/articles/mongolab
-	heroku addons:add  mongolab
+://dashboard.heroku.com/apps/<appname>/resources
 
-	//Get your mongodb username and password
-	heroku config
-
-	//Login to heroku.com and manage your mongodb
-	https://dashboard.heroku.com/apps/everyplace/resources
-
+//Get your mongodb username and password
+heroku config
 
 //collections->add
 

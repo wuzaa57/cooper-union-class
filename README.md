@@ -35,8 +35,24 @@ heroku git:remote --app <app name>
 
 //Emulated cron interface
 heroku addons:add scheduler
+```
 
+MongoDB Setup Instructions
+===========================================================
 
+```
+//Storage Setup
+//More information can be found here: https://devcenter.heroku.com/articles/mongolab
+
+//add mongolab
+heroku addons:add mongolab
+
+//Login to heroku.com to manage your mongodb
+https://dashboard.heroku.com/apps/<app name>/resources
+
+Click on "open api view"
+Copy the resource url
+Use the heroku_app<app number> and apiKey attributes in the mongoUtil example.
 
 ```
 
