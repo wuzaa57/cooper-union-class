@@ -2,6 +2,7 @@ Storage Notes
 ===========================================================
 
 ```
+Branches merged.
 
 //Get your mongodb username and password
 heroku config
