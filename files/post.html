@@ -4,62 +4,10 @@
 		<meta charset="utf-8">
 		<title>Post Example</title>
 		<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+		<script src="js/mongoUtil.js"></script>
 		<script>
 		
 			$(document).ready(function() {
-
-				//utility to post and get data
-				var mongoUtil = {
-					db: "apiTest",
-					apiKey: "5088cebae4b0d0aee183c26d",
-					url: function() {
-						return 'https://www.mongolab.com/api/1/databases/heroku_app7564546/collections/'+this.db+'?apiKey='+this.apiKey;
-					},
-					post: function(id, data, callback) {
-						var obj = {};
-						obj[id] = data;
-						var formattedData = JSON.stringify(obj);
-						$.ajax({
-							url:this.url(),
-							dataType:'json',
-							contentType:'application/json',
-							type:'POST',
-							data:formattedData,
-							success:function(response){
-								
-								console.log("success",response);
-								if(typeof(callback) === "function") {
-									callback(response);
-									console.log("The ajax request callback function has been fired.");
-								}
-							},
-							error: function(error) {
-								console.log("failure",error);
-							}
-						
-						});				
-					},
-					get: function(callback) {
-						$.ajax({
-				
-							url:this.url(),
-							dataType:'json',
-							contentType:'application/json',
-							type:'GET',
-							success:function(response){
-								
-								console.log("success",response);
-								$("<h2>"+response.length+"</h2>").appendTo("h1");
-							},
-							error: function(error) {
-								console.log("failure",error);
-							}
-					
-						});
-					}
-				};
-
-
 
 				//actual code
 				$('#form').submit(function(){
