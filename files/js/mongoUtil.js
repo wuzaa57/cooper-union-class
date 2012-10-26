@@ -1,7 +1,8 @@
 var mongoUtil = {
-	_db: "",
-	_appID:"",
-	_apiKey: "",
+	_db: "wordCount",
+	_appID:"heroku_app7962582",
+	_apiKey: "5089c774e4b0a116b09053f1",
+	
 	config: function(configuration) {
 		
 		for (var key in configuration) {
