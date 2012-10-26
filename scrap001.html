@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="scrap001.css">
+	
+	<script>
+		var tweets;
+		var rpp = 1;
+		var lastTweetID;
+		var temp = "";
+	
+		$(document).ready(function(){
+		
+			
+		
+			var scheduledQuery = setInterval(function () {
+				var searchTerm = document.getElementById("form").searchTerm.value;
+				console.log(searchTerm);
+				
+				if(temp !== "" && temp !== searchTerm) {
+					$("<div id='searchbreak'><img src='titlestar.jpg' id='imgbreak'><img src='titlestar02.jpg' id='imgbreak'></div>").prependTo("#tweets");
+				};
+				
+				temp=searchTerm;
+				
+				getTweets(searchTerm, rpp, function() {
+					console.log(lastTweetID, tweets[0].id_str);
+					if(lastTweetID !== tweets[0].id_str) {
+						displayTweets(tweets);
+					}
+					lastTweetID = tweets[0].id_str;
+					console.log("the fancy callback happened", tweets);
+				});
+					
+			}, 5000);
+		
+		
+			var displayTweets = function(input){
+				$.each(input, function(index, tweet) {
+					console.log("in each loop function: " + tweet);
+					var tweetHTML = "<div class='tweet'"+index+" id='" + tweet.id_str + "'>" + tweet.text + "</div>";
+					$(tweetHTML).prependTo("#tweets");
+				});
+			};
+		
+			var getTweets = function(searchTerm, rpp, callback) {
+			
+			//$('.numbering').append('<img class="return" src="Right_Arrow_Icon.jpg"/><img class="bird" src="bird_blue_32.png"/><br><br>');
+				var searchUrl = "http://search.twitter.com/search.json?q=" + searchTerm + "&rpp=" + rpp;
+				console.log("Search url: "+searchUrl);
+				
+				$.ajax({
+					url: searchUrl,
+					dataType:'jsonp',
+					
+					success:function(response) {
+						
+						console.log('# of responses: ' + response.results.length);
+						tweets = response.results;
+						console.log('Tweet= ' + tweets);
+						
+						if(typeof(callback) === "function") {
+							callback(response);
+							console.log("callback occuring");
+						}
+					},
+					
+					error:function() {
+						alert('Error: does not compute.');
+					}
+				
+				});
+			};
+			
+			
+			$('#button').on("click",function () {
+				scheduledQuery();
+			});
+			
+			
+		});
+		
+	</script>
+	
+</head>
+
+<body>
+
+	<h1>Heading<br></h1>
+	
+	<p id="searchBar">
+		<form id="form">Search: <input type="text" name="searchTerm"></form>
+		<button id="button">Search</button>
+	</p>
+	
+	<div id="container">
+		Container
+		<div id="tweets">
+		This is the first line.<br>
+	
+		</div>
+		
+		<div id="popularwords">
+			pop
+		</div>
+	
+	</div>
+	
+</body>
+
+</html>
