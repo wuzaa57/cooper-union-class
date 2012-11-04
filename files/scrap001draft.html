@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="scrap001.css">
+	
+	<script>
+		var tweets;
+		var rpp = 1;
+		var lastTweetID;
+		var temp = "";
+		var interval;
+	
+		$(document).ready(function(){
+		
+			var scheduledQuery = function(){ 
+				interval = setInterval(function () {
+					var searchTerm = document.getElementById("form").searchTerm.value;
+					console.log(searchTerm);
+				
+					if(temp !== "" && temp !== searchTerm) {
+						$("<div class='searchbreak'><img src='titlestar.jpg' id='imgbreak'><img src='titlestar02.jpg' id='imgbreak'></div>").prependTo("#tweets");
+					};
+				
+					temp=searchTerm;
+				
+					getTweets(searchTerm, rpp, function() {
+						console.log(lastTweetID, tweets[0].id_str);
+						if(lastTweetID !== tweets[0].id_str) {
+							displayTweets(tweets);
+						}
+						lastTweetID = tweets[0].id_str;
+						console.log("the fancy callback happened", tweets);
+					});
+					
+				}, 5000);
+			};
+			
+			
+			var pauseQuery = function(){
+				clearInterval(interval);
+				console.log(interval);
+			}
+			
+//			clearInterval(interval);
+			
+					
+		
+			var displayTweets = function(input){
+				$.each(input, function(index, tweet) {
+					console.log("in each loop function: " + tweet);
+					var tweetHTML = "<div class='tweet'"+index+" id='" + tweet.id_str + "'>" + tweet.text + "</div>";
+					$(tweetHTML).prependTo("#tweets");
+				});
+			};
+		
+			var getTweets = function(searchTerm, rpp, callback) {
+			
+			//$('.numbering').append('<img class="return" src="Right_Arrow_Icon.jpg"/><img class="bird" src="bird_blue_32.png"/><br><br>');
+				var searchUrl = "http://search.twitter.com/search.json?q=" + searchTerm + "&rpp=" + rpp;
+				console.log("Search url: "+searchUrl);
+				
+				$.ajax({
+					url: searchUrl,
+					dataType:'jsonp',
+					
+					success:function(response) {
+						
+						console.log('# of responses: ' + response.results.length);
+						tweets = response.results;
+						console.log('Tweet= ' + tweets);
+						
+						if(typeof(callback) === "function") {
+							callback(response);
+							console.log("callback occuring");
+						}
+					},
+					
+					error:function() {
+						alert('Error: does not compute.');
+					}
+				
+				});
+			};
+			
+			$('#startBirdy').click(scheduledQuery);
+			
+			$('#button').click(scheduledQuery);
+			
+			$('#stopBirdy').click(pauseQuery);
+			
+		});
+		
+	</script>
+	
+</head>
+
+<body>
+
+	<h1>
+		<img src="bird_gray_16_1.png" style="height:16px;">
+		Mirror Mirror
+		<img src="bird_gray_16.png" style="height:16px;">
+	</h1>
+	
+	<p class="searchbar">
+		<form id="form">Search: <input type="text" name="searchTerm">
+			<button id="button">Search</button>
+		</form>
+		<img src="bird_blue_32.png" id="stopBirdy" style="height:32px;">Stop birdy!
+		<br><img src="bird_black_48_0.png" id="startBirdy" style="height:32px;">Start birdy!<br>
+	</p>
+	
+		<div class="container" id="tweets">
+		This is the first line.<br>
+		</div>
+	
+		
+		<div class="container" id="popularwords">
+			<span>Popular Words</span>
+		</div>
+	
+	
+</body>
+
+</html>

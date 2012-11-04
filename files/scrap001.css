@@ -1,0 +1,61 @@
+h1 {
+	color:gray;
+	font-size:40px;
+	font-style:italic;
+	font-family:decorative;
+	margin-left:30px;
+	text-align:center;
+}
+
+#imgbreak{
+	height:18px;
+}
+
+.searchbreak{
+	margin-top:5px;
+	text-align:center;
+	width:100%;
+	height:100%;
+}
+
+.container{
+	float:left;
+	width:100%;
+	border:1px solid black;
+}
+
+.tweet{
+
+	background:#C0DEED;
+	padding:10px;
+	border:1px solid #a1a1a1;
+	border-radius:15px;
+	margin-left:auto;
+	margin-right:auto;
+	width:95%;
+	height:100%;
+	word-wrap:break-word;
+	word-break:hyphenate;
+	opacity:.8;
+
+}
+
+#tweets{
+	border-style:dotted solid;
+	border-width:3px;
+	width:75%;
+}
+
+#popularwords{
+	border-style:dotted solid;
+	border-width:3px;
+	width:20%;
+	height:100%;
+	background:#DDDDDD;
+	padding:10px;
+	text-align:center;
+}
+
+span{
+	font-family:Book Antiqua;
+	}
