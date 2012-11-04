@@ -3,6 +3,7 @@
 <head>
 	<script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="scrap001.css">
+	<script src="js/mongoUtil.js"></script>
 	
 	<script>
 		var tweets;
@@ -12,6 +13,29 @@
 		var interval;
 	
 		$(document).ready(function(){
+		
+			mongoUtil.config({
+				"db":"wordCount",
+				"appID":"heroku_app7962582",
+				"apiKey":"5089c774e4b0a116b09053f1"
+			});
+				
+			//actual code
+			$('#form').submit(function(){
+				
+				var data = $(this).find("#searchTerm").val();
+
+				console.log("data to post:", data);
+				mongoUtil.post("searchTerm",data, function(){
+					mongoUtil.get();
+				});
+
+				return false;
+			});
+			
+			// ************************************************************************
+			// ************************************************************************
+			// ************************************************************************
 		
 			var scheduledQuery = function(){ 
 				interval = setInterval(function () {
@@ -42,9 +66,6 @@
 				console.log(interval);
 			}
 			
-//			clearInterval(interval);
-			
-					
 		
 			var displayTweets = function(input){
 				$.each(input, function(index, tweet) {
@@ -104,8 +125,9 @@
 	</h1>
 	
 	<p class="searchbar">
-		<form id="form">Search: <input type="text" name="searchTerm">
-			<button id="button">Search</button>
+		Post Example
+		<form id="form">Search: <input type="text" id="searchTerm" name="searchTerm" placeholder="data to store"/>
+			<!--<button id="button">Search</button>-->
 		</form>
 		<img src="bird_blue_32.png" id="stopBirdy" style="height:32px;">Stop birdy!
 		<br><img src="bird_black_48_0.png" id="startBirdy" style="height:32px;">Start birdy!<br>
