@@ -11,6 +11,8 @@
 		var lastTweetID;
 		var temp = "";
 		var interval;
+		var word_count = {};
+		var data;
 	
 		$(document).ready(function(){
 		
@@ -20,30 +22,56 @@
 				"apiKey":"5089c774e4b0a116b09053f1"
 			});
 				
-			//actual code
-			$('#form').submit(function(){
-				
-				var data = $(this).find("#searchTerm").val();
-
-				console.log("data to post:", data);
-				mongoUtil.post("searchTerm",data, function(){
-					mongoUtil.get();
-				});
-
-				return false;
-			});
 			
 			// ************************************************************************
 			// ************************************************************************
 			// ************************************************************************
 		
-			var scheduledQuery = function(){ 
+			var scheduledQuery = function(){
+				$("#startBirdy").hide();
+				$("#stopBirdy").show();
+				
 				interval = setInterval(function () {
 					var searchTerm = document.getElementById("form").searchTerm.value;
-					console.log(searchTerm);
+					
+					if(temp === "") {
+						$('#displaybar').replaceWith('<p id="displaybar">'+searchTerm+'</p>');
+						// set up an empty object to store all unique words and the occurrence of each 
+						if(word_count[searchTerm]){
+							//if the word exists in the object increment the value
+							word_count[searchTerm]++;
+						}else{
+							// if the word does not exist, make an entry and set the value to 1
+							word_count[searchTerm]=1;
+						}
+						console.log(word_count);
+						
+						//actual code for mongodb
+						data = $('#form').find("#searchTerm").val();
+						console.log("data to post:", data);
+						
+						mongoUtil.post("searchTerm",data);
+					}
 				
-					if(temp !== "" && temp !== searchTerm) {
-						$("<div class='searchbreak'><img src='titlestar.jpg' id='imgbreak'><img src='titlestar02.jpg' id='imgbreak'></div>").prependTo("#tweets");
+					else if(temp !== "" && temp !== searchTerm) {
+						// set up an empty object to store all unique words and the occurrence of each 
+						if(word_count[searchTerm]){
+							//if the word exists in the object increment the value
+							word_count[searchTerm]++;
+						}else{
+							// if the word does not exist, make an entry and set the value to 1
+							word_count[searchTerm]=1;
+						}
+						console.log(word_count);
+						
+						//actual code for mongodb
+						data = $('#form').find("#searchTerm").val();
+						console.log("data to post:", data);
+						
+						mongoUtil.post("searchTerm",data);
+						
+						$('#displaybar').replaceWith('<p id="displaybar">'+searchTerm+'</p>');
+						$("<div class='searchbreak'><img src='titlestar.jpg' id='imgbreak'>"+temp+"<img src='titlestar02.jpg' id='imgbreak'></div>").prependTo("#tweets");
 					};
 				
 					temp=searchTerm;
@@ -62,6 +90,9 @@
 			
 			
 			var pauseQuery = function(){
+				$("#startBirdy").show();
+				$("#stopBirdy").hide();
+				
 				clearInterval(interval);
 				console.log(interval);
 			}
@@ -106,7 +137,7 @@
 			
 			$('#startBirdy').click(scheduledQuery);
 			
-			$('#button').click(scheduledQuery);
+			//$('#button').click(scheduledQuery);
 			
 			$('#stopBirdy').click(pauseQuery);
 			
@@ -124,23 +155,30 @@
 		<img src="bird_gray_16.png" style="height:16px;">
 	</h1>
 	
-	<p class="searchbar">
+	<div class="searchbar">
 		Post Example
 		<form id="form">Search: <input type="text" id="searchTerm" name="searchTerm" placeholder="data to store"/>
-			<!--<button id="button">Search</button>-->
+		<!--<button id="button">Search</button>-->
 		</form>
-		<img src="bird_blue_32.png" id="stopBirdy" style="height:32px;">Stop birdy!
-		<br><img src="bird_black_48_0.png" id="startBirdy" style="height:32px;">Start birdy!<br>
-	</p>
-	
-		<div class="container" id="tweets">
-		This is the first line.<br>
+		<div class="birdy" id="startBirdy">
+			<span>Start birdy!</span>
 		</div>
-	
-		
-		<div class="container" id="popularwords">
-			<span>Popular Words</span>
+		<div class="birdy" id="stopBirdy">
+			<!--<img src="bird_black_48_0.png" style="height:32px;position:absolute;z-index:-2;">-->
+			<span>Stop birdy!</span>
 		</div>
+	</div>
+	
+	<p id="displaybar">Displayed Word</p>
+	
+	<div class="container" id="tweets">
+	This is the first line.<br>
+	</div>
+
+	
+	<div class="container" id="popularwords">
+		<p>Popular Words</p>
+	</div>
 	
 	
 </body>

@@ -12,6 +12,7 @@ h1 {
 }
 
 .searchbreak{
+	background:#a1a1a1;
 	margin-top:5px;
 	text-align:center;
 	width:100%;
@@ -37,7 +38,30 @@ h1 {
 	word-wrap:break-word;
 	word-break:hyphenate;
 	opacity:.8;
+}
 
+.birdy{
+	position:absolute;
+	background:gray;
+	border:2px solid #a1a1a1;
+	border-radius:10px;
+	height:40px;
+}
+#startBirdy{
+	z-index:1;
+	background:url(bird_blue_32.png) center center no-repeat;
+}
+#stopBirdy{
+	z-index:6;
+	background:url(bird_black_32_0.png) center center no-repeat;
+	display:none;
+}
+
+#displaybar{
+	font-family:Book Antiqua;
+	color:#a1a1a1;
+	font-weight:bold;
+	text-align:center;
 }
 
 #tweets{
@@ -55,7 +79,9 @@ h1 {
 	padding:10px;
 	text-align:center;
 }
-
 span{
-	font-family:Book Antiqua;
-	}
+	cursor:pointer;
+	position:relative;
+	top:11px;
+	text-shadow:1px 1px #FFFFFF;
+}
