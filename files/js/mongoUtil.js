@@ -46,7 +46,15 @@ var mongoUtil = {
 			success:function(response){
 				
 				console.log("success",response);
-				$("<h2>"+response.length+"</h2>").appendTo("h1");
+				//$("<h2>"+response.length+"</h2>").appendTo("h1");
+				
+				$.each(response, function(id, entry) {
+					console.log("in each loop function: " + entry);
+					var popwordsHTML = "<div class='popwords'"+id+" id='popword" + id + "'>" + entry.searchTerm + "</div>";
+					$(popwordsHTML).appendTo("#popularwords");
+				});
+				$("#popularwords").append("length of db"+response.length);
+				
 			},
 			error: function(error) {
 				console.log("failure",error);
