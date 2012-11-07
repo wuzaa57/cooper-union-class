@@ -49,7 +49,6 @@ var mongoUtil = {
 				//$("<h2>"+response.length+"</h2>").appendTo("h1");
 				
 				$.each(response, function(id, entry) {
-					console.log("in each loop function: " + entry);
 					var popwordsHTML = "<div class='popwords'"+id+" id='popword" + id + "'>" + entry.searchTerm + "</div>";
 					$(popwordsHTML).appendTo("#popularwords");
 				});
