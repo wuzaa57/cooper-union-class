@@ -85,7 +85,7 @@
 						console.log("the fancy callback happened", tweets);
 					});
 					
-				}, 3500);
+				}, 2000);
 			};
 			
 			
@@ -102,6 +102,30 @@
 			
 				$.each(input, function(index, tweet) {
 					console.log("in each loop function: " + tweet);
+					
+					/*var c = 0;
+					var tempHolder = new Array();
+					var tempArray = new Array();
+					tempArray = tweet.text.split(" ");
+					for(var b=0; b<tempArray.length; b++){
+						if(tempArray[b].substr(0,7) === "http://")
+						{
+							tempHolder[c] = tempArray[b];
+							c++;
+						}
+					}
+					console.log('tempArray: '+tempArray);
+					
+					console.log("tweet text: "+tweet.text);
+					
+					for(var d=0; d<tempHolder.length; d++){
+						if(tweet.text.contains(tempHolder[d])){
+							tweet.text = tweet.text.replace(tempHolder[d], '<a href="'+tempHolder[d]+'">'+tempHolder[d]+'</a>');
+						}
+					}
+					
+					console.log("new tweet text: "+tweet.text);*/
+					
 					var tweetHTML = "<div class='tweet'"+index+" id='" + tweet.id_str + "'><div><img src=" + 
 						tweet.profile_image_url + " id='userimg'></div><p style='margin-top:9px;'>" + tweet.from_user_name.bold() + "<br>" +
 						tweet.created_at.substr(0,26)+ "</p><p class='tweettext'>" + tweet.text + "</p></div>";						
@@ -126,7 +150,6 @@
 						tweets = response.results;
 						console.log('Tweet= ' + tweets);
 						
-						//console.log('poop: ',response.text);
 						
 						/* $.each(response, function(index, value){
 							

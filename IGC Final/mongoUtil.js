@@ -83,7 +83,7 @@ var mongoUtil = {
 				
 				for(var m=max_count; m>0; m--){
 					for(var l=0; l<i; l++){
-						if(m == word_count[word_tracker[l]]){
+						if(m == word_count[word_tracker[l]] && word_tracker[l] !== ""){
 							pop_words[k] = word_tracker[l];
 							$("#popularwords").append("<tr class='popwords' id='popwords"+k+"'><td>"+pop_words[k]+"</td><td>"+m+"</td></tr>");
 							k++;
