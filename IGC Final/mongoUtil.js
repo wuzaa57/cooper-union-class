@@ -49,7 +49,7 @@ var mongoUtil = {
 			type:'GET',
 			success:function(response){
 				
-				console.log("success",response);
+				//console.log("success",response);
 				//$("<h2>"+response.length+"</h2>").appendTo("h1");
 				
 				var i=0;

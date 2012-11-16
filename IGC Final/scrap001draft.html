@@ -103,32 +103,27 @@
 				$.each(input, function(index, tweet) {
 					console.log("in each loop function: " + tweet);
 					
-					/*var c = 0;
-					var tempHolder = new Array();
-					var tempArray = new Array();
-					tempArray = tweet.text.split(" ");
-					for(var b=0; b<tempArray.length; b++){
-						if(tempArray[b].substr(0,7) === "http://")
-						{
-							tempHolder[c] = tempArray[b];
-							c++;
-						}
-					}
-					console.log('tempArray: '+tempArray);
-					
-					console.log("tweet text: "+tweet.text);
-					
-					for(var d=0; d<tempHolder.length; d++){
-						if(tweet.text.contains(tempHolder[d])){
-							tweet.text = tweet.text.replace(tempHolder[d], '<a href="'+tempHolder[d]+'">'+tempHolder[d]+'</a>');
-						}
-					}
-					
-					console.log("new tweet text: "+tweet.text);*/
-					
+					//console.log('INPUT: ',input);
+					//console.log('TWEET: ',tweet);
+												
+					//$.each(tweets, function(index, value){
+							
+							var text=tweet['text'];
+							console.log('TEXT: ',text);
+							
+							if(tweet.entities.urls){
+								$.each(tweet.entities.urls, function(index, website){
+									console.log('website login: ',website);
+									text=text.replace(website.url, '<a href="'+website.expanded_url+'">'+website.display_url+'</a>');
+									console.log('NEW TEXT: ',text);
+									
+								});
+							}
+						//});
+						
 					var tweetHTML = "<div class='tweet'"+index+" id='" + tweet.id_str + "'><div><img src=" + 
 						tweet.profile_image_url + " id='userimg'></div><p style='margin-top:9px;'>" + tweet.from_user_name.bold() + "<br>" +
-						tweet.created_at.substr(0,26)+ "</p><p class='tweettext'>" + tweet.text + "</p></div>";						
+						tweet.created_at.substr(0,26)+ "</p><p class='tweettext'>" + text + "</p></div>";						
 					$(tweetHTML).prependTo("#tweets");
 				});
 				
@@ -137,7 +132,7 @@
 			var getTweets = function(searchTerm, rpp, callback) {
 			
 			//$('.numbering').append('<img class="return" src="Right_Arrow_Icon.jpg"/><img class="bird" src="bird_blue_32.png"/><br><br>');
-				var searchUrl = "http://search.twitter.com/search.json?q=" + searchTerm + "&rpp=" + rpp;
+				var searchUrl = "http://search.twitter.com/search.json?q=" + searchTerm + "&rpp=" + rpp + "&include_entities=1";
 				console.log("Search url: "+searchUrl);
 				
 				$.ajax({
@@ -149,20 +144,7 @@
 						console.log('# of responses: ' + response.results.length);
 						tweets = response.results;
 						console.log('Tweet= ' + tweets);
-						
-						
-						/* $.each(response, function(index, value){
-							
-							var text=value['text'];
-							
-							if(value.entities.urls){
-								$.each(value.entities.urls, function(index, website){
-									text=text.replace(website.url, '<a href="'+website.expanded_url+'"><span>'+website.display_url+'</span></a>');
-									}
-								);
-							}
-						});*/	
-						
+										
 						if(typeof(callback) === "function") {
 							callback(response);
 							console.log("callback occuring");
@@ -236,7 +218,7 @@
 			<table id="popularwords">
 				<tr>
 					<th style="text-shadow:1px 1px #FFFFFF;font-weight:bold;text-decoration:underline;">Word</th>
-					<th style="text-shadow:1px 1px #FFFFFF;font-weight:bold;text-decoration:underline;">Frequency</th>
+					<th style="text-shadow:1px 1px #FFFFFF;font-weight:bold;text-decoration:underline;">Count</th>
 				</tr>
 			</table>
 		</div>
