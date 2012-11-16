@@ -13,7 +13,19 @@
 		var interval;
 		var word_count = {};
 		var data;
-	
+		
+		/*red: #FFCECE
+			orange:#FFEAB7
+			yellow:#FFFFC8
+			green:#D2FFC4
+			blue:#C0DEED
+			purple:#E1CAF9
+		*/
+		var colors = ["#FFCECE","#FFEAB7","#FFFFC8","#D2FFC4","#C0DEED","#E1CAF9"];
+		var p=1;
+		var tweetCount=0;
+		var tempTweetCount;
+			
 		$(document).ready(function(){
 		
 			mongoUtil.config({
@@ -30,6 +42,8 @@
 			var scheduledQuery = function(){
 				$("#startBirdy").hide();
 				$("#stopBirdy").show();
+				
+				tweetCount++;				
 				
 				interval = setInterval(function () {
 					var searchTerm = document.getElementById("form").searchTerm.value;
@@ -62,7 +76,7 @@
 							// if the word does not exist, make an entry and set the value to 1
 							word_count[searchTerm]=1;
 						}
-						console.log(word_count);
+						//console.log(word_count);
 						
 						//actual code for mongodb
 						data = $('#form').find("#searchTerm").val();
@@ -93,6 +107,9 @@
 				$("#startBirdy").show();
 				$("#stopBirdy").hide();
 				
+				tempTweetCount=tweetCount;
+				console.log('tempTweetCount=',tempTweetCount);
+								
 				clearInterval(interval);
 				console.log(interval);
 			}
@@ -107,23 +124,48 @@
 					//console.log('TWEET: ',tweet);
 												
 					//$.each(tweets, function(index, value){
-							
-							var text=tweet['text'];
-							console.log('TEXT: ',text);
-							
-							if(tweet.entities.urls){
-								$.each(tweet.entities.urls, function(index, website){
-									console.log('website login: ',website);
-									text=text.replace(website.url, '<a href="'+website.expanded_url+'">'+website.display_url+'</a>');
-									console.log('NEW TEXT: ',text);
-									
-								});
-							}
-						//});
 						
-					var tweetHTML = "<div class='tweet'"+index+" id='" + tweet.id_str + "'><div><img src=" + 
+												
+						var text=tweet['text'];
+						//console.log('TEXT: ',text);
+						
+						if(tweet.entities.urls){
+							$.each(tweet.entities.urls, function(index, website){
+								//console.log('website login: ',website);
+								text=text.replace(website.url, '<a href="'+website.expanded_url+'">'+website.display_url+'</a>');
+								//console.log('NEW TEXT: ',text);
+								
+							});
+						}
+					//});
+						
+					var tweetHTML = "<div class='tweet'"+index+" id='tweet" + tweetCount + "'><div><img src=" + 
 						tweet.profile_image_url + " id='userimg'></div><p style='margin-top:9px;'>" + tweet.from_user_name.bold() + "<br>" +
-						tweet.created_at.substr(0,26)+ "</p><p class='tweettext'>" + text + "</p></div>";						
+						tweet.created_at.substr(0,26)+ "</p><p class='tweettext'>" + text + "</p></div>";
+					
+				//change color of tweet boxes
+					console.log('tweetCount=',tweetCount);
+					
+					/*if(tempTweetCount!==tweetCount){
+						//$('#tweet'+tweetCount).css('background', function(){
+						$.each('#tweet'+tweetCount, function() {
+							if(p===colors.length){
+								p=1;
+								console.log('P1: ',p-1);
+								console.log('color pos1: ',colors[p-1]);
+								$('#tweet'+tweetCount).css('background',colors[p-1]);
+							}else{
+								p++;
+								console.log('P2: ',p-1);
+								console.log('color pos2: ',colors[p-1]);
+								$('#tweet'+tweetCount).css('background',colors[p-1]);
+							}
+						});
+					}*/
+					//end of color block
+					if(tweetCount%6===0){$('#tweet'+tweetCount).css('background',color[6]);
+					
+								
 					$(tweetHTML).prependTo("#tweets");
 				});
 				
