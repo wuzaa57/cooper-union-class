@@ -43,7 +43,7 @@
 				$("#startBirdy").hide();
 				$("#stopBirdy").show();
 				
-				tweetCount++;				
+				tweetCount++;
 				
 				interval = setInterval(function () {
 					var searchTerm = document.getElementById("form").searchTerm.value;
@@ -123,22 +123,21 @@
 					//console.log('INPUT: ',input);
 					//console.log('TWEET: ',tweet);
 												
-					//$.each(tweets, function(index, value){
-						
-												
-						var text=tweet['text'];
-						//console.log('TEXT: ',text);
-						
-						if(tweet.entities.urls){
-							$.each(tweet.entities.urls, function(index, website){
-								//console.log('website login: ',website);
-								text=text.replace(website.url, '<a href="'+website.expanded_url+'">'+website.display_url+'</a>');
-								//console.log('NEW TEXT: ',text);
-								
-							});
-						}
-					//});
-						
+					
+					var text=tweet['text'];
+					//console.log('TEXT: ',text);
+					
+					if(tweet.entities.urls){
+						$.each(tweet.entities.urls, function(index, website){
+							text=text.replace(website.url, '<a target="_blank" href="'+website.expanded_url+'">'+website.display_url+'</a>');
+						});
+					}
+					if(tweet.entities.media){
+						$.each(tweet.entities.media, function(index, site){
+							text=text.replace(site.url, '<a target="_blank" href="'+site.expanded_url+'">'+site.display_url+'</a>');
+						});
+					}
+					
 					var tweetHTML = "<div class='tweet'"+index+" id='tweet" + tweetCount + "'><div><img src=" + 
 						tweet.profile_image_url + " id='userimg'></div><p style='margin-top:9px;'>" + tweet.from_user_name.bold() + "<br>" +
 						tweet.created_at.substr(0,26)+ "</p><p class='tweettext'>" + text + "</p></div>";
@@ -162,11 +161,29 @@
 							}
 						});
 					}*/
-					//end of color block
-					if(tweetCount%6===0){$('#tweet'+tweetCount).css('background',color[6]);
-					
+					//end of color block					
 								
 					$(tweetHTML).prependTo("#tweets");
+					
+					if(tweetCount%6 === 0){
+						$('#tweet'+tweetCount).css('background',colors[5]);
+					}
+					else if(tweetCount%5 === 0){
+						$('#tweet'+tweetCount).css('background',colors[4]);
+					}
+					else if(tweetCount%4 === 0){
+						$('#tweet'+tweetCount).css('background',colors[3]);
+					}					
+					else if(tweetCount%3 === 0){
+						$('#tweet'+tweetCount).css('background',colors[2]);
+					}
+					else if(tweetCount%2 === 0){
+						$('#tweet'+tweetCount).css('background',colors[1]);
+					}
+					else{
+						$('#tweet'+tweetCount).css('background',colors[0]);
+					}
+					
 				});
 				
 			};
