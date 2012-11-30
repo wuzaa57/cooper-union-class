@@ -1,11 +1,23 @@
-h1 {
+body{
+	background:url(raindrop.jpg) repeat;
+}
+
+h1{
 	color:gray;
 	font-size:40px;
 	font-style:italic;
 	font-family:decorative;
 	text-align:center;
-	border-bottom:solid black;
-	border-top:solid black;
+}
+
+#topbar{
+	background:#EEEEEE;
+	margin-top:18px;
+	width:99%;
+	height:60px;
+	border:1px solid #BBBBBB;
+	box-shadow:1px 1px 10px #AAAAAA;
+	border-radius:15px;
 }
 
 .searchbreak{
@@ -29,6 +41,7 @@ h1 {
 
 .mainbody{
 	min-width:500px;
+	width:100%;
 }
 
 .tweettext{
@@ -45,8 +58,9 @@ h1 {
 
 .tweet{
 	background:#FFCECE;
+	box-shadow:1px 1px 10px 4px #EEEEEE;
 	padding:10px 5px 5px 10px;
-	border:1px solid #a1a1a1;
+	/*border:1px solid #bbbbbb;*/
 	border-radius:15px;
 	margin-left:auto;
 	margin-right:auto;
@@ -64,24 +78,27 @@ h1 {
 	float:left;
 	width:210px;
 	height:40px;
+	margin-left:10px;
 }
 
 .birdy{
 	position:relative;
 	float:left;
 	margin-top:-10px;
-	border:2px solid #ffffff;
-	border-radius:10px;
+	/*border:2px solid #BBBBBB;
+	border-radius:10px;*/
 	height:40px;
 }
 #startBirdy{
 	z-index:1;
 	background:url(bird_blue_32.png) center center no-repeat;
+	margin-top:7px;
 }
 #stopBirdy{
 	z-index:6;
 	background:url(bird_black_32_0.png) center center no-repeat;
 	display:none;
+	margin-top:7px;
 }
 
 #displaybar{
@@ -95,17 +112,16 @@ h1 {
 
 #popularwords{
 	float:right;
-	border:2px solid black;
+	border:1px #FFC0CB;
 	border-radius:10px;
 	width:20%;
 	height:100%;
 	text-align:center;
 	color:black;
 	padding:5px 5px 5px 5px;
-	/*box-shadow:0px 0px #000000;*/
+	box-shadow:1px 1px 12px 5px #FAAFBE;/*FFC0CB*/
 	margin-right:8px;
-	background:url(bird_gray_16.png) repeat;
-	opacity:.8;
+	background:#FFE4E1;/*#EFEFEF;*/
 }
 
 
