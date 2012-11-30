@@ -142,52 +142,11 @@
 						tweet.profile_image_url + " id='userimg'></div><p style='margin-top:9px;'>" + tweet.from_user_name.bold() + "<br>" +
 						tweet.created_at.substr(0,26)+ "</p><p class='tweettext'>" + text + "</p></div>";
 					
-				//change color of tweet boxes
-					console.log('tweetCount=',tweetCount);
-					
-					/*if(tempTweetCount!==tweetCount){
-						//$('#tweet'+tweetCount).css('background', function(){
-						$.each('#tweet'+tweetCount, function() {
-							if(p===colors.length){
-								p=1;
-								console.log('P1: ',p-1);
-								console.log('color pos1: ',colors[p-1]);
-								$('#tweet'+tweetCount).css('background',colors[p-1]);
-							}else{
-								p++;
-								console.log('P2: ',p-1);
-								console.log('color pos2: ',colors[p-1]);
-								$('#tweet'+tweetCount).css('background',colors[p-1]);
-							}
-						});
-					}*/
-					//end of color block					
-								
 					$(tweetHTML).prependTo("#tweets");
 					
-					/*if(tweetCount%2 === 0){
-						if(tweetCount%6 === 0){
-							$('#tweet'+tweetCount).css('background',colors[5]);
-						}
-						else if(tweetCount%4 === 0){
-							$('#tweet'+tweetCount).css('background',colors[3]);
-						}	
-						else{
-							$('#tweet'+tweetCount).css('background',colors[1]);
-						}
-					}
 					
-					else if(tweetCount%5 === 0){
-						$('#tweet'+tweetCount).css('background',colors[4]);
-					}
-									
-					else if(tweetCount%3 === 0){
-						$('#tweet'+tweetCount).css('background',colors[2]);
-					}
-					
-					else{
-						$('#tweet'+tweetCount).css('background',colors[0]);
-					}*/
+					//change color of tweet boxes
+					console.log('tweetCount=',tweetCount);	
 					var counter = (tweetCount-1)%6;
 					
 						if(counter===0){
@@ -297,8 +256,8 @@
 		
 			<table id="popularwords">
 				<tr>
-					<th style="text-shadow:1px 1px #FFFFFF;font-weight:bold;text-decoration:underline;">Word</th>
-					<th style="text-shadow:1px 1px #FFFFFF;font-weight:bold;text-decoration:underline;">Count</th>
+					<!--<th style="text-shadow:1px 1px #FFFFFF;font-weight:bold;text-decoration:underline;">Word</th>
+					<th style="text-shadow:1px 1px #FFFFFF;font-weight:bold;text-decoration:underline;">Count</th>-->
 				</tr>
 			</table>
 		</div>
