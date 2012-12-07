@@ -2,22 +2,17 @@ body{
 	background:url(raindrop.jpg) repeat;
 }
 
-h1{
-	color:gray;
-	font-size:40px;
-	font-style:italic;
-	font-family:decorative;
-	text-align:center;
-}
-
 #topbar{
 	background:#EEEEEE;
 	margin-top:18px;
-	width:99%;
+	min-width:800px;
+	width:98%;
 	height:60px;
 	border:1px solid #BBBBBB;
 	box-shadow:1px 1px 10px #AAAAAA;
 	border-radius:15px;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 .searchbreak{
@@ -58,6 +53,7 @@ h1{
 
 .tweet{
 	background:#FFCECE;
+	font-family:Book Antiqua;
 	box-shadow:1px 1px 10px 4px #EEEEEE;
 	padding:10px 5px 5px 10px;
 	/*border:1px solid #bbbbbb;*/
@@ -72,33 +68,42 @@ h1{
 	vertical-align:top;
 }
 
+.content{
+	position:relative;
+	float:left;
+	width:65%;
+	height:60px;
+	vertical-align:middle;
+}
 
 .searchbar{
 	position:relative;
-	float:left;
+	float:right;
+	margin-right:60px;
 	width:210px;
 	height:40px;
-	margin-left:10px;
 }
 
 .birdy{
 	position:relative;
-	float:left;
-	margin-top:-10px;
+	float:right;
+	margin-right:-260px;
+	margin-top:20px;
 	/*border:2px solid #BBBBBB;
 	border-radius:10px;*/
 	height:40px;
+	font-family:Book Antiqua;
 }
 #startBirdy{
 	z-index:1;
 	background:url(bird_blue_32.png) center center no-repeat;
-	margin-top:7px;
+	margin-top:9px;
 }
 #stopBirdy{
 	z-index:6;
 	background:url(bird_black_32_0.png) center center no-repeat;
 	display:none;
-	margin-top:7px;
+	margin-top:9px;
 }
 
 #displaybar{
@@ -112,6 +117,7 @@ h1{
 
 #popularwords{
 	float:right;
+	font-family:Book Antiqua;
 	border:1px #FFC0CB;
 	border-radius:10px;
 	width:20%;

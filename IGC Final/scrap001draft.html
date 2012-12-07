@@ -99,7 +99,7 @@
 						console.log("the fancy callback happened", tweets);
 					});
 					
-				}, 2000);
+				}, 3200);
 			};
 			
 			
@@ -202,11 +202,23 @@
 				});
 			};
 			
-			$('#startBirdy').click(scheduledQuery);
+			var movebg = function(){
+				$('body').animate({
+					"background-position-x": "-=5000px",
+					"background-position-y": "+=8000px",
+				}, 50000,'linear');//,movebg());
+			};
+			var stopbg = function(){
+				$('body').stop();
+			}
 			
+			
+			$('#startBirdy').click(scheduledQuery);
+			$('#startBirdy').click(movebg);
 			//$('#button').click(scheduledQuery);
 			
 			$('#stopBirdy').click(pauseQuery);
+			$('#stopBirdy').click(stopbg);
 			
 			$("#searchTerm").focus(pauseQuery);
 			$('#searchTerm').keypress(function(e) {
@@ -220,7 +232,7 @@
 			//		var word_clicked = $(this).value;
 			//		console.log("debug "+word_clicked);
 			//	});	
-			
+				
 		});
 		
 	</script>
@@ -229,8 +241,10 @@
 
 <body>	
 	<div id="topbar">
+		<div class="content"><p style="margin-left:10px;margin-top:11px;">Enter a word and click on the birdy to get a stream of tweets!
+			<br>See what other words people are searching for.</p></div>
 		<div class="searchbar"><br>
-			<form id="form"><i>Search: </i><input type="text" id="searchTerm" name="searchTerm" placeholder="search for..."/>
+			<form id="form">Search: <input type="text" id="searchTerm" name="searchTerm" placeholder="search for..."/>
 			<!--<button id="button">Search</button>-->
 			</form>
 		</div>
