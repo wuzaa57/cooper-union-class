@@ -42,6 +42,7 @@
 			var scheduledQuery = function(){
 				$("#startBirdy").hide();
 				$("#stopBirdy").show();
+				$(".buna").show();
 				
 				tweetCount++;
 				
@@ -49,7 +50,7 @@
 					var searchTerm = document.getElementById("form").searchTerm.value;
 					
 					if(temp === "") {
-						$('#displaybar').replaceWith('<p id="displaybar">'+searchTerm+'</p>');
+						$('#db1').replaceWith('<p class="displaybar" id="db1">'+searchTerm+'<img src="buna.gif" class="buna"></p>');
 						// set up an empty object to store all unique words and the occurrence of each 
 						if(word_count[searchTerm]){
 							//if the word exists in the object increment the value
@@ -84,7 +85,7 @@
 						
 						mongoUtil.post("searchTerm",data);
 						
-						$('#displaybar').replaceWith('<p id="displaybar">'+searchTerm+'</p>');
+						$('#db1').replaceWith('<p class="displaybar" id="db1">'+searchTerm+'<img src="buna.gif" class="buna"></p>');
 						$("<br><div class='searchbreak'><img id='imgbreak' src='finished_star.png'> "+temp.toUpperCase()+" <img id='imgbreak' src='finished_star.png'></div><br>").prependTo("#tweets");
 					};
 				
@@ -106,6 +107,7 @@
 			var pauseQuery = function(){
 				$("#startBirdy").show();
 				$("#stopBirdy").hide();
+				$(".buna").hide();
 				
 				tempTweetCount=tweetCount;
 				console.log('tempTweetCount=',tempTweetCount);
@@ -239,7 +241,7 @@
 	
 </head>
 
-<body>	
+<body>
 	<div id="topbar">
 		<div class="content"><p style="margin-left:10px;margin-top:11px;">Enter a word and click on the birdy to get a stream of tweets!
 			<br>See what other words people are searching for.</p></div>
@@ -260,13 +262,14 @@
 	
 	<div class="mainbody">
 		<div id="tweetwords">
-			<p id="displaybar">Displayed Word</p>
-			
+			<div>
+				<p class="displaybar" id="db1">Displayed Word</p>	<!-- style="margin-top:15px;" -->
+			</div>
 			<div id="tweets"></div>
 		</div>
 		
 		<div id="layer" style="margin-top:30px;">
-			<p id="displaybar">Popular Words</p>
+			<p class="displaybar">Popular Words</p>
 		
 			<table id="popularwords">
 				<tr>
